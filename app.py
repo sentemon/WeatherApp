@@ -13,20 +13,24 @@ class WeatherApp(ttkbootstrap.Window):
         self.setup_widgets()
 
     def setup_widgets(self) -> None:
+        # Button widget -> to change the theme
+        self.theme_button = ttkbootstrap.Button(self, text="◑", command=self.change_theme, bootstyle="primary")
+        self.theme_button.pack(side="right", anchor="ne", padx=10, pady=10)
+
         # Disable resizing the window
         self.resizable(width=False, height=False)
         
         # Entry widget -> to enter the city name
         self.city_entry = ttkbootstrap.Entry(self, font=("Helvetica", 18))
-        self.city_entry.pack(pady=10)
+        self.city_entry.pack(side="top", anchor="ne", padx=30, pady=10)
 
         # Button widget -> to get the weather details
         self.search_button = ttkbootstrap.Button(self, text="Search", command=self.search, bootstyle="warning")
-        self.search_button.pack(pady=10)
+        self.search_button.pack(side="top", anchor="ne", padx=110, pady=10)
 
         # Label widget -> to show the city/country name
         self.location_label = tk.Label(self, font=("Helvetica", 25))
-        self.location_label.pack(pady=20)
+        self.location_label.pack(side="top", pady=20, padx=10)
 
         # Label widget -> to show the weather icon
         self.icon_label = ttkbootstrap.Label(self)
@@ -39,6 +43,21 @@ class WeatherApp(ttkbootstrap.Window):
         # Label widget -> to show the weather description
         self.description_label = tk.Label(self, font=("Helvetica", 20))
         self.description_label.pack()  # Don't forget to pack the description label
+
+    def change_theme(self) -> None:
+        # Get the current theme
+        current_theme = self.style.theme_use()
+
+        # Change the theme
+        if current_theme == "morph":
+            new_theme = "darkly"
+        else:
+            new_theme = "morph"
+
+        # Set the new theme
+        self.style.theme_use(new_theme)
+
+        
 
     # Function to get weather information from openweathermap.org API
     def get_weather(self, city) -> tuple:
