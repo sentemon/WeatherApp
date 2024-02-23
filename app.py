@@ -15,22 +15,22 @@ class WeatherApp(ttkbootstrap.Window):
     def setup_widgets(self) -> None:
         # Button widget -> to change the theme
         self.theme_button = ttkbootstrap.Button(self, text="◑", command=self.change_theme, bootstyle="primary")
-        self.theme_button.pack(side="right", anchor="ne", padx=10, pady=10)
+        self.theme_button.place(x=355, y=10, width=35, height=35)
 
         # Disable resizing the window
         self.resizable(width=False, height=False)
         
         # Entry widget -> to enter the city name
         self.city_entry = ttkbootstrap.Entry(self, font=("Helvetica", 18))
-        self.city_entry.pack(side="top", anchor="ne", padx=30, pady=10)
+        self.city_entry.place(x=80, y=10, width=240, height=30)
 
         # Button widget -> to get the weather details
         self.search_button = ttkbootstrap.Button(self, text="Search", command=self.search, bootstyle="warning")
-        self.search_button.pack(side="top", anchor="ne", padx=110, pady=10)
+        self.search_button.place(x=160, y=50, width=80, height=30)
 
         # Label widget -> to show the city/country name
         self.location_label = tk.Label(self, font=("Helvetica", 25))
-        self.location_label.pack(side="top", pady=20, padx=10)
+        self.location_label.pack(pady=90)
 
         # Label widget -> to show the weather icon
         self.icon_label = ttkbootstrap.Label(self)
@@ -42,7 +42,7 @@ class WeatherApp(ttkbootstrap.Window):
 
         # Label widget -> to show the weather description
         self.description_label = tk.Label(self, font=("Helvetica", 20))
-        self.description_label.pack()  # Don't forget to pack the description label
+        self.description_label.pack()
 
     def change_theme(self) -> None:
         # Get the current theme
